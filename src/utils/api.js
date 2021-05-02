@@ -7,7 +7,7 @@ const create = (data) => {
     })
   }
   
-  const readAll = () => {
+const readAll = () => {
     return fetch('/.netlify/functions/todos-read-all').then((response) => {
       return response.json()
     })

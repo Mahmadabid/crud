@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import './components.css';
 import api from "../utils/api";
 
@@ -25,19 +25,14 @@ export const AddTodo = () => {
         id: Math.floor(Math.random() * 100000000) + 1
     }
 
-    useEffect(() => {
-        api.readAll().then((todos) => {
-
-            console.log('all todos', todos)
-    
-        })
-    }, [])
-
     const handleSubmit = (event) => {
         event.preventDefault();
- 
+        api.create(Todo).then((response) => {
+            console.log(response)
+        })
         setTitle('');
     }
+    
     
     return (
         <div>

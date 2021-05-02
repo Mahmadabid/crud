@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import EditTodo from './editTodo';
+import api from "../utils/api";
 
 export const Todo = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [data, setData] = useState([]);
 
     const togglePopup = () => {
         setIsOpen(true);
@@ -13,7 +15,12 @@ export const Todo = () => {
         setIsOpen(false);
     }
 
-    const data = [{ name: 'asd', date: '12:12.4 Feb 12 2020', id: 123 }, { name: 'add', date: '12:12.4 Feb f2 2020', id: 1233 }]
+    useEffect(() => {
+        api.readAll().then((todos) => {
+            console.log('all todos', todos)
+            setData(todos)            
+        })
+    }, [])
 
     return (
         <div>
