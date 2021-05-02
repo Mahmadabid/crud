@@ -24,7 +24,7 @@ export const Todo = () => {
 
     return (
         <div>
-            {
+            {data &&
                 data.map((Data, index) =>
                     <div className="todo" key={index}>
                         <p style={{ marginLeft: '10px', fontWeight: '700', color: '#4195c7' }}>{Data.name}</p>

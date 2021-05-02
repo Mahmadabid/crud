@@ -1,31 +1,30 @@
-import faunadb from "faunadb";
+// Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
+var faunadb = require("faunadb");
+var q = faunadb.query;
 
-const q = faunadb.query;
+require("dotenv").config();
 
-const client = new faunadb.Client({
-    secret: process.env.FAUNADB_SECRET
-})
+const handler = async (event) => {
+  try {
+    if (event.httpMethod !== "POST")
+      return { statusCode: 405, body: "Method not allowed" };
 
-exports.handler = (event, context, callback) => {
-    const data = JSON.parse(event.body)
-    console.log("Function `todo-create` invoked", data)
-    const todoItem = {
-        data: data
+    if (process.env.FAUNADB_ADMIN_SECRET) {
+      // console.log(event.httpMethod);
+      const data = JSON.parse(event.body);
+
+      var client = new faunadb.Client({
+        secret: process.env.FAUNADB_ADMIN_SECRET,
+      });
+      const result = await client.query(
+        q.Create(q.Collection("todo"), { data: { name: data.name, date: data.date, id: data.id } })
+      );
+      // console.log(result);
+      return { statusCode: 200, body: JSON.stringify(result) };
     }
-    return client.query(q.Create(q.Ref("classes/todos"), todoItem))
-        .then((response) => {
-            console.log("success", response)
-            /* Success! return the response with statusCode 200 */
-            return callback(null, {
-                statusCode: 200,
-                body: JSON.stringify(response)
-            })
-        }).catch((error) => {
-            console.log("error", error)
-            /* Error! return the error with statusCode 400 */
-            return callback(null, {
-                statusCode: 400,
-                body: JSON.stringify(error)
-            })
-        })
-}
+  } catch (error) {
+    return { statusCode: 500, body: error.toString() };
+  }
+};
+
+module.exports = { handler };
