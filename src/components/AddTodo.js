@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './components.css';
+import api from "../utils/api";
 
 export const AddTodo = () => {
 
@@ -24,6 +25,14 @@ export const AddTodo = () => {
         id: Math.floor(Math.random() * 100000000) + 1
     }
 
+    useEffect(() => {
+        api.readAll().then((todos) => {
+
+            console.log('all todos', todos)
+    
+        })
+    }, [])
+
     const handleSubmit = (event) => {
         event.preventDefault();
  
@@ -33,7 +42,7 @@ export const AddTodo = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="Enter name" value={title} className="input" onChange={(e) => { setTitle(e.target.value) }} required />
+                <input type="text" placeholder="Enter name" name="Enter name" value={title} className="input" onChange={(e) => { setTitle(e.target.value) }} required />
                 <button type="submit" className="add-button button">Create Todo</button>
             </form>
         </div>

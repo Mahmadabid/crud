@@ -43,7 +43,7 @@ const create = (data) => {
   
   export default {
     create,
-    readAll,
+    readAll: readAll,
     update,
     delete: deleteTodo,
     batchDelete: batchDeleteTodo

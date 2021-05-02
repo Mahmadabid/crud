@@ -2,6 +2,11 @@
     background-image: linear-gradient(to right, #5493db , #62dbd5);
 }
 
+.cancel-button {
+    background-image: linear-gradient(to right, #677688 , #c2d4d4);
+    width: auto;
+}
+
 .del-button {
     height: 20px;
     color: white;
@@ -41,6 +46,12 @@
     height: 40px;
 }
 
+.reinput {
+    margin-top: 10px;
+    width: 20rem;
+    height: 40px;
+}
+
 .todo {
     border: rgb(250, 168, 74) 1px solid;
     width: 25rem;
@@ -61,7 +72,7 @@
    
 .box {
     position: relative;
-    width: 70%;
+    width: 330px;
     margin: 0 auto;
     height: auto;
     max-height: 70vh;
@@ -80,5 +91,41 @@
 
     .input {
         width: 300px;
+    }
+
+    .reinput {
+        width: 280px;
+    }
+
+    .box {
+        width: 310px;
+    }
+}
+
+@media screen and (max-width: 360px) and (min-width:316px) {
+    .reinput {
+        width: 270px;
+    }
+
+    .box {
+        width: 290px;
+    }
+}
+
+@media screen and (max-width: 315px) {
+    .todo {
+        width: 280px;
+    }
+
+    .input {
+        width: 280px;
+    }
+
+    .reinput {
+        width: 230px
+    }
+
+    .box {
+        width: 240px;
     }
 }

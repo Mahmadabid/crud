@@ -1,18 +1,20 @@
 import React from "react";
- 
-const editTodo = (props) => {
-  return (
-    <div className="popup-box">
-      <div className="box">
-                            content={<>
-                                <b>Design your Popup</b>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <button>Test button</button>
-                            </>}
-                            handleClose={togglePopup}
-      </div>
-    </div>
-  );
+
+const EditTodo = (props) => {
+    return (
+        <div className="popup-box">
+            <div className="box">
+                <b>Enter new name</b>
+                <br/>
+                <input type="text" className="reinput" placeholder="Enter name" />
+                <br/>
+                <div style={{marginTop: '20px'}}>
+                    <button className="add-button button" onClick={props.handleClose}>update</button>
+                    <button className="cancel-button button" onClick={props.handleClose}>cancel</button>
+                </div>
+            </div>
+        </div>
+    );
 };
- 
-export default editTodo;
+
+export default EditTodo;
