@@ -1,0 +1,61 @@
+.add-button {
+    background-image: linear-gradient(to right, #5493db , #62dbd5);
+}
+
+.del-button {
+    height: 20px;
+    color: white;
+    border: none;
+    font-weight: bolder;
+    background-color: red;
+}
+
+.edit-button {
+    height: 20px;
+    color: white;
+    border: none;
+    font-weight: bolder;
+    background-color: blue;
+}
+
+.button {
+    min-height: 44px;
+    color: white;
+    border: none;
+    font-weight: bolder;
+    margin-left: 10px;
+    margin-top: 4px;
+    padding: 6px;
+    border-radius: 7%;
+}
+
+.buttonFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.input {
+    margin-top: 10px;
+    width: 20rem;
+    height: 40px;
+}
+
+.todo {
+    border: rgb(250, 168, 74) 1px solid;
+    width: 25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 480px) {
+    .todo {
+        width: 300px;
+    }
+
+    .input {
+        width: 300px;
+    }
+}
