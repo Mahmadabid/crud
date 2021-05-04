@@ -11,6 +11,7 @@
     "react-scripts": "0.9.5"
   },
   "devDependencies": {
+    "netlify-cli": "^3.24.3",
     "netlify-lambda": "^2.0.5"
   },
   "scripts": {

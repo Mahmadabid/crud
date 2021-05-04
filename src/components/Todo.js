@@ -16,12 +16,14 @@ export const Todo = () => {
     }
 
     useEffect(() => {
-        api.readAll().then((todos) => {
-            console.log('all todos', todos)
-            setData(todos)            
-        })
-    }, [])
-
+        fetch("/.netlify/functions/todos-read-all").then((result) => {
+          result.json().then((todo) => {
+            setData(todo);
+            console.log(todo);
+          });
+        });
+      }, []);
+console.log(data);
     return (
         <div>
             {data &&
