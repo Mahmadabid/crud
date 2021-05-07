@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import EditTodo from './editTodo';
 
 export const Todo = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-const data = [];
+    const [data, setData] = useState([]);
+
     const togglePopup = () => {
         setIsOpen(true);
     }
@@ -13,9 +14,18 @@ const data = [];
         setIsOpen(false);
     }
 
+    useEffect(() => {
+            const response = fetch('/.netlify/functions/read-todo');
+            const respond = response.json();
+        console.log(respond);
+        setData(respond);
+    }, [])
+
+
+console.log(data);
     return (
         <div>
-            {data &&
+            {/* {data &&
                 data.map((Data, index) =>
                     <div className="todo" key={index}>
                         <p style={{ marginLeft: '10px', fontWeight: '700', color: '#4195c7' }}>{Data.name}</p>
@@ -24,10 +34,10 @@ const data = [];
                             <button className="edit-button" onClick={togglePopup}>edit</button>
                             <button className="del-button">del</button>
                         </div>
-                        {isOpen && <EditTodo handleClose={handleClose}/>}
+                        {isOpen && <EditTodo handleClose={handleClose} />}
                     </div>
                 )
-            }
+            } */}
         </div>
 
     )
