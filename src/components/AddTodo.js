@@ -1,6 +1,5 @@
 import React, { useState} from 'react';
 import './components.css';
-import api from "../utils/api";
 
 export const AddTodo = () => {
 
@@ -27,9 +26,7 @@ export const AddTodo = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        api.create(Todo).then((response) => {
-            console.log(response)
-        })
+
         setTitle('');
     }
     

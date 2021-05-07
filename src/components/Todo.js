@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import EditTodo from './editTodo';
-import api from "../utils/api";
 
 export const Todo = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [data, setData] = useState([]);
-
+const data = [];
     const togglePopup = () => {
         setIsOpen(true);
     }
@@ -15,15 +13,6 @@ export const Todo = () => {
         setIsOpen(false);
     }
 
-    useEffect(() => {
-        fetch("/.netlify/functions/todos-read-all").then((result) => {
-          result.json().then((todo) => {
-            setData(todo);
-            console.log(todo);
-          });
-        });
-      }, []);
-console.log(data);
     return (
         <div>
             {data &&
