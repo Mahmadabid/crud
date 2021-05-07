@@ -15,10 +15,12 @@ export const Todo = () => {
     }
 
     useEffect(() => {
-            const response = fetch('/.netlify/functions/read-todo');
-            const respond = response.json();
-        console.log(respond);
-        setData(respond);
+        const readAll = () => {
+            return fetch('/.netlify/functions/read-todo').then((response) => {
+                return response.json()
+            })
+        }
+        setData(readAll);
     }, [])
 
 
