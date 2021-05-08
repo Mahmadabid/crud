@@ -8,23 +8,23 @@ const handler = async (event, _context, callback) => {
   })
   const subject = JSON.parse(event.body);
 
-  await client.query(q.Create(
-    q.Collection("todo"),
-    {
-      data: {
-        name: subject.name,
-        date: subject.date
-      }
-    }
-  )).then(res => {
+  await client.query(q.Update(
+    q.Ref(q.Collection('todo'), subject.id),
+    { 
+        data: { 
+            name: subject.name,
+            date: subject.date 
+        } 
+}
+  ))
+  .then(res => {
     return callback(null, {
       statusCode: 200,
-      body: JSON.stringify(res)
+      body: JSON.stringify(res),
     })
   }).catch(err => {
     return callback(null, {
-      statusCode: 400,
-      body: JSON.stringify(err)
+      statusCode: 500, body: err.toString()
     })
   })
 };
